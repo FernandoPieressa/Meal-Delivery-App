@@ -25,7 +25,7 @@
 {% endfor %}
 </table>
 <div>
-  <p>Set reminder to all employees at: {{ date }}</p>
+  <p>Set reminder to all employees for meal at date: {{ date }}</p>
   <form method="POST">
     {% csrf_token %}
       <button type="submit">Send Reminder</button>

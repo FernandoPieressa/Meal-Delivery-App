@@ -20,6 +20,7 @@
     <tr>
         <td>{{employee.username}}</td>
         <td>{{employee.name}}</td>
+        <td><a href="{% url 'MealDelivery:delete_employee' employee.username %}">Delete</a></td>
     </tr>
 {% endfor %}
 </table>
