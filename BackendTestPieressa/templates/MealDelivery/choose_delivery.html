@@ -1,0 +1,18 @@
+{% extends 'MealDelivery/base.html' %}
+
+{% block container %}
+<div>
+  {% if expired %}
+  <h3>The meal selection for today is over</h3>
+  {% elif not finished %}
+  <h3>Check menu for {{ date }}</h3>
+  <form method="POST">
+    {% csrf_token %}
+      {{ selected_menu_form.as_p }}
+      <button type="submit">Choose meal</button>
+  </form>
+  {% else %}
+  <h3>Your meal has been sent</h3>
+  {% endif %}
+</div>
+{% endblock %}

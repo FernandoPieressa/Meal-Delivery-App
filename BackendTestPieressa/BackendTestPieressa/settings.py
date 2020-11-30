@@ -11,10 +11,23 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from django.core.exceptions import ImproperlyConfigured
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+
+def get_env_variable(var_name):
+    """Get the environment variable or return exception"""
+    try:
+        return os.environ[var_name]
+    except KeyError:
+        error_msg = "Set the ∞s enviroment variable" % var_name
+        raise ImproperlyConfigured(error_msg)
+
+# Get ENV VARIABLES key
+ENV_ROLE = get_env_variable('ENV_ROLE')
+SLACK_TOKEN = get_env_variable('SLACK_TOKEN')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -23,7 +36,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '8x-wov5u$qo&(key%2o0dc$l+0&*$u00i95a+yq5=@-@o!=f6w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+
+if ENV_ROLE == 'development':
+    DEBUG = True
+    TEMPLATE_DEBUG = DEBUG
+    DB_PASSWORD = get_env_variable('DB_PASSWORD')
 
 ALLOWED_HOSTS = []
 
@@ -54,7 +72,7 @@ ROOT_URLCONF = 'BackendTestPieressa.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,8 +93,12 @@ WSGI_APPLICATION = 'BackendTestPieressa.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'backend_test_pieressa',
+        'USER': 'postgres',
+        'PASSWORD': DB_PASSWORD,
+        'HOST': 'localhost',
+        'PORT': 5432,
     }
 }
 
@@ -105,14 +127,13 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Chile/Continental'
 
 USE_I18N = True
 
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/

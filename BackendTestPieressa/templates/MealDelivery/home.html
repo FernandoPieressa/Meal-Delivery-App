@@ -1,0 +1,50 @@
+{% extends 'MealDelivery/base.html' %}
+
+{% block container %}
+<div>
+  <h3>Check menu of specific date</h3>
+  <form method="GET">
+      {{ date_form.as_p }}
+      <button type="submit">Check</button>
+  </form>
+  {% if error_msg %}
+  {{ error_msg }}
+  {% endif %}
+</div>
+<table class="table">
+    <tr>
+        <th>Meals</th>
+        <th>Count</th>
+    </tr>
+{% for count, meal in meal_choices %}
+    <tr>
+        <td>{{meal.name}}</td>
+        <td>{{count}}</td>
+        <td><a href="{% url 'MealDelivery:delete_meal' meal.id %}">Delete</a></td>
+    </tr>
+{% endfor %}
+</table>
+<div>
+  <p>Set reminder to all employees at: {{ date }}</p>
+  <form method="POST">
+    {% csrf_token %}
+      <button type="submit">Send Reminder</button>
+  </form>
+</div>
+
+<h3>Selected meals for today</h3>
+<table class="table">
+    <tr>
+        <th>Employee</th>
+        <th>Meal</th>
+        <th>Customizations</th>
+    </tr>
+{% for choice in day_choices %}
+    <tr>
+        <td>{{choice.user.name}}</td>
+        <td>{{choice.meal.name}}</td>
+        <td>{{choice.customization}}</td>
+    </tr>
+{% endfor %}
+</table>
+{% endblock %}

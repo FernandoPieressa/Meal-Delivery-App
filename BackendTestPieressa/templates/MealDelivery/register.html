@@ -1,0 +1,12 @@
+{% extends 'MealDelivery/base.html' %}
+
+{% block container %}
+<div>
+  <h3>Register</h3>
+  <form method="POST">
+    {% csrf_token %}
+      {{ form.as_p }}
+    <button type="submit">Register</button>
+  </form>
+</div>
+{% endblock %}
