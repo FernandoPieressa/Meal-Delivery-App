@@ -55,19 +55,19 @@ virtualenv -p python3.7 env
 
 The users will need to authenticate to use most functionalities. The only function you can do without logging in is choose a specific meal if you are an employee. use the command `populate_db` to create an initial user.
 
-Once a user has logged in, it will be possible to create new meals on the *Menu* tab, by specifying a day and meal names. The user will be able to add multiple meals in one form. If the user needs to edit the menu for a day, it will have to delete a meal and create it again by searching for it in the *Home* view
+Once a user has logged in, it will be possible to create new meals on the **Menu** tab, by specifying a day and meal names. The user will be able to add multiple meals in one form. If the user needs to edit the menu for a day, it will have to delete a meal and create it again by searching for it in the **Home** view
 
-The *Home* view can filter and show the meals available given a specific date, and also show the food selection done by each employee. Once a date has been given, and only if there are any meals in the given date, the user can send slack reminders to every single employee on the system. Once the slack reminders has been sent, the a new table will appear with the food selection for a specific date. The employees will receive a notification *1 minute* after the slack reminder has been sent by the user.
+The **Home** view can filter and show the meals available given a specific date, and also show the food selection done by each employee. Once a date has been given, and only if there are any meals in the given date, the user can send slack reminders to every single employee on the system. Once the slack reminders has been sent, the a new table will appear with the food selection for a specific date. The employees will receive a notification **1 minute** after the slack reminder has been sent by the user.
 
-The *Employees* tab can let the user add and delete Employees from the system. It's important to put as username the slack id of the employee to correctly receive the reminder.
+The **Employees** tab can let the user add and delete Employees from the system. It's important to put as username the slack id of the employee to correctly receive the reminder.
 
-The user can also register new admin users to manage the Meal Delivery app by using the *Register* tab.
+The user can also register new admin users to manage the Meal Delivery app by using the **Register** tab.
 
 After a reminder has been sent, employees will be able to click the link in the slack reminder with the format:
 
-´´´
+```
 {protocol}://{host}/menu/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxx
-´´´
+```
 
 Where they can choose their meal and add specifications. This can only be done if its before 11:00am and at the the same day of the Menu, if not the Employee will receive a link expired message.
 
