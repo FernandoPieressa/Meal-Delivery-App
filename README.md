@@ -66,3 +66,9 @@ After a reminder has been sent, employees will be able to click the link in the 
 ´´´
 
 Where they can choose their meal and add specifications. This can only be done if its before 11:00am and at the the same day of the Menu, if not the Employee will receive a link expired message.
+
+## Final Notes
+
+- To make the publication of reminders asynchronous, and given that Django 3.0.5 was used, threading was used to create one running thread for each of the reminder to be sent.
+
+- Thanks for your time!
