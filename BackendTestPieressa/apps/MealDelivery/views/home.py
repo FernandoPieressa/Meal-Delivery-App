@@ -83,6 +83,15 @@ def home(request):
         date=current_date, meal=meal).count(), meal) for meal in day_meals]
 
     if request.method == 'POST':
+        if len(day_meals) == 0:
+            error_msg = 'There are no meals assigned for that date'
+            return render(request, 'MealDelivery/components/home.html', {
+                'meal_choices': meal_choices,
+                'day_choices': day_choices,
+                'date': current_date,
+                'date_form': date_form,
+                'error_msg': error_msg
+                })
         host = request.get_host()
         protocol = request.scheme
         send_all_slack_reminders(host, protocol, current_date)

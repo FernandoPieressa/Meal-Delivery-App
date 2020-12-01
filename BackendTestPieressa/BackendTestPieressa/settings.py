@@ -26,6 +26,8 @@ def get_env_variable(var_name):
 # Get ENV VARIABLES key
 ENV_ROLE = get_env_variable('ENV_ROLE')
 SLACK_TOKEN = get_env_variable('SLACK_TOKEN')
+DB_PASSWORD = get_env_variable('DB_PASSWORD')
+DB_USER = get_env_variable('DB_USER')
 
 SECRET_KEY = '8x-wov5u$qo&(key%2o0dc$l+0&*$u00i95a+yq5=@-@o!=f6w'
 
@@ -34,8 +36,6 @@ DEBUG = False
 if ENV_ROLE == 'development':
     DEBUG = True
     TEMPLATE_DEBUG = DEBUG
-    DB_PASSWORD = get_env_variable('DB_PASSWORD')
-    DB_USER = get_env_variable('DB_USER')
 
 ALLOWED_HOSTS = []
 
