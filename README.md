@@ -3,10 +3,13 @@
 ## Requirements
 
 - Postgres: 10
+- Python: 3.7
 
 Python libraries needed can be found in requirements.txt
 
 ## Enviroment variables
+
+To run the application, it will be necessary to provide the following envs:
 
 - ENV_ROLE: Represents in what role the application will start (development/production)
 - SLACK_TOKEN: Slack app token. The slack application must have permissions to send reminders
@@ -20,7 +23,7 @@ To install all Django requirements run
 ```
 pip install requeriments.txt
 ```
-### If you want to can create a virtual environment(Recommended, hygiene is good)
+### If you want to can create a virtual environment (Recommended, hygiene is good)
 
 For Unix-like (MAC and Linux)
 
@@ -60,7 +63,8 @@ The *Employees* tab can let the user add and delete Employees from the system. I
 
 The user can also register new admin users to manage the Meal Delivery app by using the *Register* tab.
 
-After a reminder has been sent, employees will be able to click the link in the slack reminder with the format
+After a reminder has been sent, employees will be able to click the link in the slack reminder with the format:
+
 ´´´
 {protocol}://{host}/menu/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxx
 ´´´
