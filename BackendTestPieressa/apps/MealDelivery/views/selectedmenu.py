@@ -1,9 +1,10 @@
 from datetime import datetime
 from django.shortcuts import render
+from django.core.exceptions import ObjectDoesNotExist
+from django.http import HttpResponse
 from ..forms.selectedmenu import SelectedMenuForm
 from ..models.selectedmenu import SelectedMenu
 from ..models.meal import Meal
-
 
 def choose_meal(request, id):
     """Let employees choose a meal. Employees can select a meal from a menu and
@@ -20,7 +21,10 @@ def choose_meal(request, id):
     """
     current_time = datetime.now()
     template_name = 'MealDelivery/components/models/choose_delivery.html'
-    selected_menu = SelectedMenu.objects.get(id=id)
+    try:
+        selected_menu = SelectedMenu.objects.get(id=id)
+    except ObjectDoesNotExist:
+        return HttpResponse(status=404)
 
     if int(current_time.strftime('%H')) >= 11:
         selected_menu.expired = True

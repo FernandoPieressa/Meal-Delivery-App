@@ -1,4 +1,6 @@
 from datetime import date
+from django.core.exceptions import ObjectDoesNotExist
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from ..forms.date import DateForm
@@ -21,7 +23,6 @@ def menu(request):
     current_date = date.today()
     date_form = DateForm({'date': current_date})
     template_name = 'MealDelivery/components/models/menu.html'
-
     if request.method == 'GET':
         formset = MealFormset(request.GET or None)
     elif request.method == 'POST':
@@ -55,6 +56,9 @@ def delete_meal(request, id):
     Returns:
         redirect: redirect user to the view home view
     """
-    meal = Meal.objects.get(id=id)
+    try:
+        meal = Meal.objects.get(id=id)
+    except ObjectDoesNotExist:
+        return HttpResponse(status=404)
     meal.delete()
     return redirect('MealDelivery:index')

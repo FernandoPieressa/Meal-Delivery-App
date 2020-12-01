@@ -1,4 +1,6 @@
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from ..forms.employee import EmployeeForm
 from ..models.employee import Employee
@@ -21,8 +23,7 @@ def employee(request):
         if employee_form.is_valid():
             employee_form.save()
             return redirect('MealDelivery:add_employee')
-    else:
-        employee_form = EmployeeForm()
+    employee_form = EmployeeForm()
     return render(request, 'MealDelivery/components/models/employee.html', {
         'employee_form': employee_form,
         'employees': employees
@@ -39,6 +40,9 @@ def delete_employee(request, id):
     Returns:
         redirect: redirect user to the view employee view
     """
-    employee_object = Employee.objects.get(username=id)
+    try:
+        employee_object = Employee.objects.get(username=id)
+    except ObjectDoesNotExist:
+        return HttpResponse(status=404)
     employee_object.delete()
     return redirect('MealDelivery:add_employee')

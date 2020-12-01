@@ -17,7 +17,6 @@ def register_view(request):
     form = UserCreationForm()
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
-
         if form.is_valid():
             form.save()
             return redirect('MealDelivery:login')
@@ -37,6 +36,7 @@ def login_view(request):
     if request.user.is_authenticated:
         return redirect('MealDelivery:index')
 
+    context = {}
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -46,9 +46,10 @@ def login_view(request):
         if user:
             login(request, user)
             return redirect('MealDelivery:index')
-    return render(request, 'MealDelivery/components/session/login.html', {
-        'message': 'Username or password is incorrect'
-    })
+        context['message'] = 'Username or password is incorrect'
+
+    return render(request, 'MealDelivery/components/session/login.html',
+                  context)
 
 @login_required(login_url='MealDelivery:login')
 def logout_user(request):

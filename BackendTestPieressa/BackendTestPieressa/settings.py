@@ -35,6 +35,7 @@ if ENV_ROLE == 'development':
     DEBUG = True
     TEMPLATE_DEBUG = DEBUG
     DB_PASSWORD = get_env_variable('DB_PASSWORD')
+    DB_USER = get_env_variable('DB_USER')
 
 ALLOWED_HOSTS = []
 
@@ -83,7 +84,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'backend_test_pieressa',
-        'USER': 'postgres',
+        'USER': DB_USER,
         'PASSWORD': DB_PASSWORD,
         'HOST': 'localhost',
         'PORT': 5432,
