@@ -21,7 +21,7 @@ To run the application, it will be necessary to provide the following envs:
 To install all Django requirements run
 
 ```
-pip install requeriments.txt
+pip install requirements.txt
 ```
 ### If you want to can create a virtual environment (Recommended, hygiene is good)
 
