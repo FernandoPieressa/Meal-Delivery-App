@@ -53,7 +53,7 @@ virtualenv -p python3.7 env
 
 ## How to use the app
 
-The users will need to authenticate to use most functionalities. The only function you can do without logging in is choose a specific meal if you are an employee. use the command `populate_db` to create an initial user.
+The users will need to authenticate to use most functionalities. The only function you can do without logging in is choose a specific meal if you are an employee. use the command `populate_db` to create an initial user. The url to the initial login is `{protocol}://{host}/menu/login`
 
 Once a user has logged in, it will be possible to create new meals on the **Menu** tab, by specifying a day and meal names. The user will be able to add multiple meals in one form. If the user needs to edit the menu for a day, it will have to delete a meal and create it again by searching for it in the **Home** view
 
