@@ -26,7 +26,7 @@ def choose_meal(request, id):
     except ObjectDoesNotExist:
         return HttpResponse(status=404)
 
-    if int(current_time.strftime('%H')) >= 11:
+    if int(current_time.strftime('%H')) >= 11 or current_time.date() > selected_menu.date:
         selected_menu.expired = True
         selected_menu.save()
         return render(request, template_name, {
