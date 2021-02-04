@@ -1,5 +1,7 @@
 # Meal Delivery Application
 
+This application let the users of a Slack Organization receive notifications of a daily lunch menu and select a possible meal to be delivered to their homes
+
 ## Requirements
 
 - Postgres: 10
