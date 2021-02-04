@@ -23,7 +23,7 @@ To install all Django requirements run
 ```
 pip install requirements.txt
 ```
-### If you want to can create a virtual environment (Recommended, hygiene is good)
+### If you want to create a virtual environment (Recommended, hygiene is good)
 
 For Unix-like (MAC and Linux)
 
