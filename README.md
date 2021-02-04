@@ -74,5 +74,3 @@ Where they can choose their meal and add specifications. This can only be done i
 ## Final Notes
 
 - To make the publication of reminders asynchronous, and given that Django 3.0.5 was used, threading was used to create one running thread for each of the reminder to be sent.
-
-- Thanks for your time!
